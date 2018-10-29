@@ -50,7 +50,7 @@
    (self-insert 1)))
 
 (define-command lispy-comment-sexp () ()
-  (when (at-open-p)
+  (when (and (not (region-active)) (at-open-p))
     (mark-sexp))
   (lem.language-mode::comment-or-uncomment-region))
 
