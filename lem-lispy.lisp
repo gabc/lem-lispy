@@ -14,7 +14,9 @@
 (defun at-close-p (&optional (point (current-point)))
   ;; Needs the `-1' otherwise it doesn't work.
   ;; This is the way to say "previous char"
-  (char= #\) (character-at point -1)))
+  (if (= 0 (point-charpos (current-point)))
+      nil
+      (char= #\) (character-at point -1))))
 
 (defmacro lispy-cond (open-block end-block else)
   `(cond ((at-open-p)
